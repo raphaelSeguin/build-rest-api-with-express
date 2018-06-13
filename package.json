@@ -1,18 +1,32 @@
 {
   "name": "techdegree-fullstackjs-course-review-rest-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "Treehouse Techdegree Project #11",
   "main": "src/index.js",
   "scripts": {
     "start": "nodemon ./src/index.js localhost 5000"
   },
-  "author": "",
+  "author": "raphaël seguin",
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^1.9.1"
   },
   "dependencies": {
-    "express": "^4.13.4",
-    "morgan": "^1.7.0"
-  }
+    "express": "^4.16.3",
+    "mongoose": "^5.1.5",
+    "morgan": "^1.7.0",
+    "pug": "^2.0.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raphaelSeguin/build-rest-api-with-express.git"
+  },
+  "keywords": [
+    "express",
+    "mongodb"
+  ],
+  "bugs": {
+    "url": "https://github.com/raphaelSeguin/build-rest-api-with-express/issues"
+  },
+  "homepage": "https://github.com/raphaelSeguin/build-rest-api-with-express#readme"
 }

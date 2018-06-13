@@ -1,13 +1,14 @@
 'use strict';
 
 // load modules
-var express = require('express');
-var morgan = require('morgan');
+const express = require('express');
+const morgan = require('morgan');
 
-var app = express();
+const app = express();
 
 // set our port
 app.set('port', process.env.PORT || 5000);
+app.set('view engine', 'pug');
 
 // morgan gives us http request logging
 app.use(morgan('dev'));
