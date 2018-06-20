@@ -4,31 +4,31 @@
 
 ### Set up a database connection.
 * [x] Use npm to install Mongoose.
-* [ ] Using Mongoose, create a connection to your MongoDB database.
-* [ ] Write a message to the console if there's an error connecting to the database.
-* [ ] Write a message to the console once the connection has been successfully opened.
+* [x] Using Mongoose, create a connection to your MongoDB database.
+* [x] Write a message to the console if there's an error connecting to the database.
+* [x] Write a message to the console once the connection has been successfully opened.
 
 ### Create your Mongoose schema and models. Your database schema should match the following requirements:
 * User
-    * [ ] \_id (ObjectId, auto-generated)
-    * [ ] fullName (String, required)
-    * [ ] emailAddress (String, required, must be unique and in correct format)
-    * [ ] password (String, required)
+    * [x] \_id (ObjectId, auto-generated)
+    * [x] fullName (String, required)
+    * [x] emailAddress (String, required, must be unique and in correct format)
+    * [x] password (String, required)
 * Course
-    * [ ] \_id (ObjectId, auto-generated)
-    * [ ] user (\_id from the users collection)
-    * [ ] title (String, required)
-    * [ ] description (String, required)
-    * [ ] estimatedTime (String)
-    * [ ] materialsNeeded (String)
-    * [ ] steps (Array of objects that include stepNumber (Number), title (String, required) and * description (String, required) properties)
-    * [ ] reviews (Array of ObjectId values, \_id values from the reviews collection)
+    * [x] \_id (ObjectId, auto-generated)
+    * [x] user (\_id from the users collection)
+    * [x] title (String, required)
+    * [x] description (String, required)
+    * [x] estimatedTime (String)
+    * [x] materialsNeeded (String)
+    * [x] steps (Array of objects that include stepNumber (Number), title (String, required) and * description (String, required) properties)
+    * [x] reviews (Array of ObjectId values, \_id values from the reviews collection)
 * Review
-    * [ ] \_id (ObjectId, auto-generated)
-    * [ ] user (\_id from the users collection)
-    * [ ] postedOn (Date, defaults to “now”)
-    * [ ] rating (Number, required, must fall between “1” and “5”)
-    * [ ] review (String)
+    * [x] \_id (ObjectId, auto-generated)
+    * [x] user (\_id from the users collection)
+    * [x] postedOn (Date, defaults to “now”)
+    * [x] rating (Number, required, must fall between “1” and “5”)
+    * [x] review (String)
 * Mongoose validation gives you a rich set of tools to validate user data. See [Mongoose Validation](http://mongoosejs.com/docs/validation.html) for more information.
 
 ### Seed your database with data.
