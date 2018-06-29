@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
- 
 const stepSchema = new Schema({
     stepNumber: Number,
     title: {
@@ -15,7 +14,6 @@ const stepSchema = new Schema({
 });
   
 const courseSchema = new Schema({
-    _id: Schema.Types.ObjectId,
     user: Schema.Types.ObjectId,
     title: {
         type: String,
