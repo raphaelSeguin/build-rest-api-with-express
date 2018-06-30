@@ -69,7 +69,11 @@ router.get('/course/:courseId', (req, res, next) => {
 });
 router.post('/courses', (req, res, next) => {
 
-
+    Course.create( req.body )
+        .then()
+            res.status(201)
+            res.setHeader('Location', '/');
+            
     // POST /api/courses 201 - Creates a course, sets the Location header, and returns no content
 
 });
@@ -81,6 +85,15 @@ router.put('/courses/:courseId', (req, res, next) => {
 });
 router.post('/courses/:courseId/reviews', (req, res, next) => {
     
+    Course.find({ _id: req.params.courseId}, (err, course) => {
+
+        course.reviews.push
+        course.save()
+
+        res.status(201)
+        res.setHeader('Location', `/courses/${ course._id }`);
+        res.send();
+    })
     // 201 - Creates a review for the specified course ID, sets the Location header to the related course, and returns no content
 
 });
