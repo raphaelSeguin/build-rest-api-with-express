@@ -34,13 +34,13 @@
 
 ### Create the user routes
 * Set up the following routes (listed in the format HTTP VERB Route HTTP Status Code):
-    * [ ] GET /api/users 200 - Returns the currently authenticated user
-    * [ ] POST /api/users 201 - Creates a user, sets the Location header to "/", and returns no content
+    * [x] GET /api/users 200 - Returns the currently authenticated user
+    * [x] POST /api/users 201 - Creates a user, sets the Location header to "/", and returns no content
 
 ### Create the course routes
 * Set up the following routes (listed in the format HTTP VERB Route HTTP Status Code):
-    * [ ] GET /api/courses 200 - Returns the Course "_id" and "title" properties
-    * [ ] GET /api/course/:courseId 200 - Returns all Course properties and related documents for the provided course ID
+    * [x] GET /api/courses 200 - Returns the Course "_id" and "title" properties
+    * [x] GET /api/course/:courseId 200 - Returns all Course properties and related documents for the provided course ID
     * [ ] When returning a single course for the GET /api/courses/:courseId route, use Mongoose population to load the related user and reviews documents.
     * [ ] POST /api/courses 201 - Creates a course, sets the Location header, and returns no content
     * [ ] PUT /api/courses/:courseId 204 - Updates a course and returns no content
@@ -48,11 +48,11 @@
 
 ### Update any POST and PUT routes to return Mongoose validation errors.
 * [ ] Use the next function in each route to pass any Mongoose validation errors to Express’s global error handler
-* [ ] Send the Mongoose validation error with a400 status code to the user
+* [ ] Send the Mongoose validation error with a 400 status code to the user
 
 ### Update the User model to store the user's password as a hashed value.
-* [ ] For security reasons, we don't want to store the password property in the database as clear text.
-* [ ] Create a pre save hook on the user schema that uses the bcrypt npm package to hash the user's password.
+* For security reasons, we don't want to store the password property in the database as clear text.
+* [x] Create a pre save hook on the user schema that uses the bcrypt npm package to hash the user's password.
 * See [bcrypt]https://github.com/ncb000gt/node.bcrypt.js/ for more information.
 
 ### Create an authentication method on the user model to return the user document based on their credentials
@@ -74,3 +74,18 @@
     * [ ] PUT /api/courses/:courseId
     * [ ] GET /api/users
     * [ ] POST /api/courses/:courseId/reviews
+
+
+## Extra Credit
+
+### Review model
+* [ ] Validation added to prevent a user from reviewing their own course
+
+### User routes
+* Tests have been written for the following user stories:
+    * [ ] When I make a request to the GET route with the correct credentials, the corresponding user document is returned
+    * [ ] When I make a request to the GET /api/courses/:courseId route with the invalid credentials, a 401 status error is returned
+
+### Course routes
+* [ ] When returning a single course for the GET /api/courses/:courseId route, use Mongoose deep population to return only the fullName of the related user on the course model and each review returned with the course model. This will hide other user’s private details, like passwords and emails, from other users.
+* [ ] Example user object returned: { "_id": "wiubfh3eiu23rh89hcwib", "fullName": "Sam Smith" } * See the Project Resources section for more information about deep population.

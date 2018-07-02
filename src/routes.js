@@ -1,25 +1,34 @@
-const router = require('express').Router();
+const router   = require('express').Router();
 
-const User   = require('./models').User;
-const Course = require('./models').Course;
-const Review = require('./models').Review;
+const auth     = require('basic-auth');
 
-router.route('/users')
-    .get( (req, res, next) => {
-        console.log(req.session)
-        User.find({}, (err, user) => {
+const User     = require('./models').User;
+const Course   = require('./models').Course;
+const Review   = require('./models').Review;
+
+const authentication = (req, res, next) => {
+    User.authenticate(
+        req.user.name,
+        req.user.pass,
+        (err, user) => {
             if (err) {
+                //console.log('bop', err);
                 return next(err);
             }
+            req.user = user;
+            next();
+        }
+    )
+}
 
-            res.json()
-        })
-        
-        console.log(req.session)
-        // GET /api/users 200 - Returns the currently authenticated user
-    })
+router.route('/users')
+    .get( 
+        authentication,
+        (req, res, next) => {
+            return res.json(req.user);
+        }
+    )
     .post( (req, res, next) => {
-        console.log('users post');
         // 201 - 
         //Creates a user
         //sets the Location header to "/"
@@ -47,9 +56,8 @@ router.get('/courses', (req, res, next) => {
             const { _id, title} = course;
             return { _id, title}
         });
-        console.log('query result : ', courses.length);
         res.status(200);
-        res.json( response );
+        res.json(response);
     })
 });
 
@@ -57,43 +65,61 @@ router.get('/course/:courseId', (req, res, next) => {
     
     // GET /api/course/:courseId 200 - Returns all Course properties and related documents for the provided course ID
 
-    Course.find({ id: req.params.courseId }, (err, course)  => {
-        if (err) {
-            return next(err);
-        }
-        else {
-            res.status(200);
-            res.json(course)
-        }
-    })
+    Course.findById( req.params.courseId )
+        .populate('user')
+        //.populate('reviews')
+        .exec( (err, course)  => {
+            if (err) {
+                return next(err);
+            } else {
+                res.status(200);
+                res.json(course);
+            }
+        })
 });
-router.post('/courses', (req, res, next) => {
+
+router.post('/courses', 
+    authentication,
+    (req, res, next) => {
+    const user = auth(req);
+    User.find({email: user.email})
+        .then()
+    // => { name: 'something', pass: 'whatever' }
 
     Course.create( req.body )
         .then()
             res.status(201)
             res.setHeader('Location', '/');
-            
+
     // POST /api/courses 201 - Creates a course, sets the Location header, and returns no content
 
 });
 
-router.put('/courses/:courseId', (req, res, next) => {
-    
+router.put('/courses/:courseId',
+    authentication,
+    (req, res, next) => {
+        if (req.user) {
+            Course.findOne({ _id: req.params.courseId })
+                .then( course => res.json(course) )
+        } else {
+            
+        }
     // PUT /api/courses/:courseId 204 - Updates a course and returns no content
+    }
+);
+router.post('/courses/:courseId/reviews', 
+    authentication,
+    (req, res, next) => {
+        Course.find({ _id: req.params.courseId}, (err, course) => {
 
-});
-router.post('/courses/:courseId/reviews', (req, res, next) => {
-    
-    Course.find({ _id: req.params.courseId}, (err, course) => {
+            course.reviews.push
+            course.save()
 
-        course.reviews.push
-        course.save()
-
-        res.status(201)
-        res.setHeader('Location', `/courses/${ course._id }`);
-        res.send();
-    })
+            res.status(201)
+            res.setHeader('Location', `/courses/${ course._id }`);
+            res.send();
+        }
+    )
     // 201 - Creates a review for the specified course ID, sets the Location header to the related course, and returns no content
 
 });
@@ -107,5 +133,14 @@ router.post('/courses/:courseId/reviews', (req, res, next) => {
     // * [ ] POST /api/courses 201 - Creates a course, sets the Location header, and returns no content
     // * [ ] PUT /api/courses/:courseId 204 - Updates a course and returns no content
     // * [ ] POST /api/courses/:courseId/reviews 201 - Creates a review for the specified course ID, sets the Location header to the related course, and returns no content
+
+
+    // authenticate :
+    // * Use this middleware in the following routes:
+    // * [ ] POST /api/courses
+    // * [ ] PUT /api/courses/:courseId
+    // * [ ] GET /api/users
+    // * [ ] POST /api/courses/:courseId/reviews
+
 
 module.exports = router;

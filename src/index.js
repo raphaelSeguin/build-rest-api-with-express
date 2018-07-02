@@ -26,18 +26,6 @@ const db = mongoose.connection;
 db.on('error', err => console.log('connection error :') );
 db.once('open', function() {
     console.log('connected successfully');
-    //seeder(db, data);
-
-    // const joesmith = new User ({
-    //     "_id": "57029ed4795118be119cc437",
-    //     "fullName": "Joe Smith",
-    //     "emailAddress": "joe@smith.com",
-    //     "password": "password"
-    // });
-    // joesmith.save( function( err, user) {
-    //     if (err) { return console.log( err.message ); }
-    //     console.log(user);
-    // })
 });
 
 // Express app
@@ -57,6 +45,13 @@ app.use( session({
     cookie: { secure: true }
   })
 );
+
+// put credentials in req object's user key
+app.use( (req, res, next) => {
+    req.user = auth(req);
+    //console.log(req.user);
+    next();
+})
 
 // send a friendly greeting for the root route
 app.get('/', (req, res) => {
@@ -78,8 +73,7 @@ app.use((req, res) => {
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(err.status || 500).json({
-      message: err.message,
-      error: {}
+      message: err.message
     });
   });
 
