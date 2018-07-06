@@ -44,7 +44,7 @@
     * [x] When returning a single course for the GET /api/courses/:courseId route, use Mongoose population to load the related user and reviews documents.
     * [x] POST /api/courses 201 - Creates a course, sets the Location header, and returns no content
     * [x] PUT /api/courses/:courseId 204 - Updates a course and returns no content
-    * [ ] POST /api/courses/:courseId/reviews 201 - Creates a review for the specified course ID, sets the Location header to the related course, and returns no content
+    * [x] POST /api/courses/:courseId/reviews 201 - Creates a review for the specified course ID, sets the Location header to the related course, and returns no content
 
 ### Update any POST and PUT routes to return Mongoose validation errors.
 * [x] Use the next function in each route to pass any Mongoose validation errors to Express’s global error handler
@@ -79,12 +79,12 @@
 ## Extra Credit
 
 ### Review model
-* [ ] Validation added to prevent a user from reviewing their own course
+* [x] Validation added to prevent a user from reviewing their own course
 
 ### User routes
 * Tests have been written for the following user stories:
-    * [ ] When I make a request to the GET route with the correct credentials, the corresponding user document is returned
-    * [ ] When I make a request to the GET /api/courses/:courseId route with the invalid credentials, a 401 status error is returned
+    * [x] When I make a request to the GET route with the correct credentials, the corresponding user document is returned
+    * [x] When I make a request to the GET /api/courses/:courseId route with the invalid credentials, a 401 status error is returned
 
 ### Course routes
 * [x] When returning a single course for the GET /api/courses/:courseId route, use Mongoose deep population to return only the fullName of the related user on the course model and each review returned with the course model. This will hide other user’s private details, like passwords and emails, from other users.
