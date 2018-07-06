@@ -25,6 +25,7 @@ const userSchema = new Schema({
     }
 });
 
+// This hook hashes the user password with a salt
 userSchema.pre('save', function(next) {
     const saltRounds = 10;
     const myPlaintextPassword = this.password;
@@ -41,18 +42,15 @@ userSchema.pre('save', function(next) {
     });
 });
 
-// +++ Create a static method on the user schema that takes an email, password, and callback
-// +++ The method should attempt to get the user from the database that matches the email address given.
-// +++ If a user was found for the provided email address, then check that user's password against the password given using bcrypt.
-// +++ If they match, then return the user document that matched the email address
-// +++ If they don't match or a user with the email given isn’t found, then pass an error object to the callback
-
+// Static method to authenticate a user
+// compare password hash to the hash stored on the db
+// passes the user document to the callback if user is authentic
+// passes an error object otherwise
 userSchema.static('authenticate', function (email, password, callback) {
     return this.findOne({ emailAddress: email })
         .then(
             user => {
                 if (user) {
-                    console.log(user);
                     bcrypt.compare( password, user.password )
                         .then(
                             res => res
@@ -62,7 +60,7 @@ userSchema.static('authenticate', function (email, password, callback) {
                             err => callback( new Error(err.message) )
                         )
                 } else {
-                    const err = new Error('This user doesn\' exist');
+                    const err = new Error('Invalid user name or password');
                     callback( err );
                 }
             }

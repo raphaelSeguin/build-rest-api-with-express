@@ -1,0 +1,616 @@
+{
+	"info": {
+		"_postman_id": "519c3e6b-7696-4a4b-a3d2-4f704019dff3",
+		"name": "Course API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Courses",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f2c2d782-4c1e-4bdf-90b3-7098258872f3",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test('getCourses', function() {",
+							"    pm.response.to.have.status(200);",
+							"})"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic am9lQHNtaXRoLmNvbTpwYXNzd29yZA==",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Awesome Recipe\",\n    \"prepTime\": 0,\n    \"ingredients\": [\n        {\n            \"item\": \"Potatoes\"\n        },\n        {\n        }\n    ],\n    \"steps\": [\n    ]\n}"
+				},
+				"url": {
+					"raw": "localhost:5000/api/courses",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"courses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Course",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "19c4e2fd-3760-48cf-8cba-80e37a8c8114",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test('getCourse', function() {",
+							"    pm.response.to.have.status(200);",
+							"})"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Awesome Recipe\",\n    \"prepTime\": 0,\n    \"ingredients\": [\n        {\n            \"item\": \"Potatoes\"\n        },\n        {\n        }\n    ],\n    \"steps\": [\n    ]\n}"
+				},
+				"url": {
+					"raw": "localhost:5000/api/course/5b3e17bb8a58c8f5a1a2cf95",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"course",
+						"5b3e17bb8a58c8f5a1a2cf95"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create User (Incomplete Data)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a6d2ee91-15ae-49ef-b9e4-51256897fdd1",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test('postUserIncompleteData', function() {",
+							"    pm.response.to.have.status(400);",
+							"})"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c9d8772c-ab99-4470-b9ca-7606fc16d706",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test('postUser', function() {",
+							"    pm.response.to.have.status(201);",
+							"})"
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"fullName\": \"John milou\",\n    \"emailAddress\": \"biolo@carirot.com\",\n    \"password\": \"passpass\",\n    \"confirmPassword\": \"passpass\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create User (Existing Email Address)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9cbefa75-0e87-45bd-a2c7-1f6e69f9f603",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test('getCourseTestDuplicateEmail', function() {",
+							"    pm.response.to.have.status(400);",
+							"})"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"fullName\": \"Joe Smith\",\n    \"emailAddress\": \"joe@smith.com\",\n    \"password\": \"password\",\n    \"confirmPassword\": \"password\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Users (No Auth)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "447f2ad8-6b28-43fd-a314-986e4364df77",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test('getUserNoAuthTest', function() {",
+							"    pm.response.to.have.status(401);",
+							"})"
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Users (With Auth)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4a39e78f-82b1-4070-a1a0-7eae419fc0d8",
+						"type": "text/javascript",
+						"exec": [
+							"/*",
+							"When I make a request to the GET route with the correct credentials, the corresponding user document is returned",
+							"*/",
+							"pm.test('getUserTest', function() {",
+							"    pm.response.to.have.status(200);",
+							"    pm.expect(pm.response.text()).to.include('John milou');",
+							"})"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic am9lQHNtaXRoLmNvbTpwYXNzd29yZA=="
+					},
+					{
+						"key": "",
+						"value": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Course (No Auth, Incomplete Data)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "63878da8-4926-4e7f-8988-8988413f615a",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test('postCourseNoAuth', function() {",
+							"    pm.response.to.have.status(401);",
+							"})"
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{}"
+				},
+				"url": {
+					"raw": "localhost:5000/api/courses",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"courses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Course (Incomplete Data)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e9a8bdba-3dad-4d8a-8535-c537f2811c32",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test('postCourseIncompleteData', function() {",
+							"    pm.response.to.have.status(400);",
+							"})"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic am9lQHNtaXRoLmNvbTpwYXNzd29yZA=="
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{}"
+				},
+				"url": {
+					"raw": "localhost:5000/api/courses",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"courses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Course (Minimum Data)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dad0a957-a772-4400-bf85-c75446055e5e",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test('postCourse', function() {",
+							"    pm.response.to.have.status(201);",
+							"})"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic am9lQHNtaXRoLmNvbTpwYXNzd29yZA=="
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"the real John Milou's course\",\n    \"description\": \"Oh yeah\",\n    \"user\": {\n        \"_id\": \"5b3a566b94118b95130ce13b\"\n    },\n    \"steps\": [\n        {\n            \"title\": \"Step 1\",\n            \"description\": \"My first step.\"\n        },\n        {\n            \"title\": \"Step 2\",\n            \"description\": \"My second step.\"\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "localhost:5000/api/courses",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"courses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Course (Minimum Data)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "046537dd-0385-49b2-b7e7-91cc0051bede",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test('getUserNoAuthTest', function() {",
+							"    pm.response.to.have.status(204);",
+							"})"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic am9lQHNtaXRoLmNvbTpwYXNzd29yZA==",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"_id\": \"5b3dd405cc5086e365765686\",\n    \"title\": \"New Course blabla Again Hello\",\n    \"description\": \"My course description. And again.\",\n    \"user\": {\n        \"_id\": \"57029ed4795118be119cc437\"\n    },\n    \"steps\": [\n        {\n            \"title\": \"Step 1\",\n            \"description\": \"My first step.\"\n        }\n    ]\n}\n"
+				},
+				"url": {
+					"raw": "localhost:5000/api/courses/5b3dd405cc5086e365765686",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"courses",
+						"5b3dd405cc5086e365765686"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Review",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f427f707-294f-4893-a4a0-7fba022c5867",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test('postReview', function() {",
+							"    pm.response.to.have.status(201);",
+							"})"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic am9lQHNtaXRoLmNvbTpwYXNzd29yZA==",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"rating\": 3\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/courses/5b3e17bb8a58c8f5a1a2cf95/reviews",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"courses",
+						"5b3e17bb8a58c8f5a1a2cf95",
+						"reviews"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Course",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost:5000/api/course/5b3b3d89994af6ac3842a97d",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"course",
+						"5b3b3d89994af6ac3842a97d"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "milou",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "john@milou.com",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "1951e5f3-ced0-4f74-aa96-5c2d77d4507b",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "e37b07f6-93db-4f97-ae45-688ce29daf33",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

@@ -5,7 +5,6 @@ const express    = require('express');
 const morgan     = require('morgan');
 const mongoose   = require('mongoose');
 const bodyparser = require('body-parser');
-const session    = require('express-session');
 const auth       = require('basic-auth');
 
 const seeder = require('./seeder');
@@ -38,18 +37,10 @@ app.set('view engine', 'pug');
 // morgan gives us http request logging
 app.use( morgan('dev') );
 app.use( bodyparser.json() );
-app.use( session({
-    secret: 'project11',
-    resave: true,
-    saveUninitialized: false,
-    cookie: { secure: true }
-  })
-);
 
 // put credentials in req object's user key
 app.use( (req, res, next) => {
     req.user = auth(req);
-    //console.log(req.user);
     next();
 })
 
@@ -71,7 +62,7 @@ app.use((req, res) => {
 
 // global error handler
 app.use((err, req, res, next) => {
-    console.error(err.stack);
+    //console.error(err.stack);
     res.status(err.status || 500).json({
       message: err.message
     });

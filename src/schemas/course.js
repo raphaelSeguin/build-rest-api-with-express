@@ -14,7 +14,7 @@ const stepSchema = new Schema({
 });
   
 const courseSchema = new Schema({
-    user: Schema.Types.ObjectId,
+    user: { type: Schema.Types.ObjectId, ref: 'User'},
     title: {
         type: String,
         required: true
@@ -26,7 +26,7 @@ const courseSchema = new Schema({
     estimatedTime: String,
     materialsNeeded: String,
     steps: [stepSchema],
-    reviews: [{type: Schema.Types.ObjectId, ref: 'Reviews'}]
+    reviews: [{type: Schema.Types.ObjectId, ref: 'Review'}]
 })
 
 module.exports = courseSchema;
