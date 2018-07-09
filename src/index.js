@@ -7,8 +7,6 @@ const mongoose   = require('mongoose');
 const bodyparser = require('body-parser');
 const auth       = require('basic-auth');
 
-const seeder = require('./seeder');
-
 const User   = require('./models').User;
 const Course = require('./models').Course;
 const Review = require('./models').Review;
