@@ -383,15 +383,14 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "4a39e78f-82b1-4070-a1a0-7eae419fc0d8",
+						"id": "0b8fc6ec-3d04-4464-83d7-5707737bbca4",
 						"type": "text/javascript",
 						"exec": [
 							"/*",
 							"When I make a request to the GET route with the correct credentials, the corresponding user document is returned",
 							"*/",
 							"pm.test('getUserTest', function() {",
-							"    pm.response.to.have.status(200);",
-							"    pm.expect(pm.response.text()).to.include('John milou');",
+							"    pm.response.to.have.status(401);",
 							"})"
 						]
 					}
