@@ -378,6 +378,72 @@
 			"response": []
 		},
 		{
+			"name": "Get Users (Wrong Creds)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4a39e78f-82b1-4070-a1a0-7eae419fc0d8",
+						"type": "text/javascript",
+						"exec": [
+							"/*",
+							"When I make a request to the GET route with the correct credentials, the corresponding user document is returned",
+							"*/",
+							"pm.test('getUserTest', function() {",
+							"    pm.response.to.have.status(200);",
+							"    pm.expect(pm.response.text()).to.include('John milou');",
+							"})"
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "imwrong",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "margareth@thatcher.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic am9lQHNtaXRoLmNvbTpwYXNzd29yZA=="
+					},
+					{
+						"key": "",
+						"value": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Create Course (No Auth, Incomplete Data)",
 			"event": [
 				{
