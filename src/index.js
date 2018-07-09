@@ -22,9 +22,15 @@ mongoose.connect('mongodb://localhost:27017/course-api')
 
 const db = mongoose.connection;
 
-db.on('error', err => console.log('connection error :') );
+db.on('error', err => console.log('db connection error :') );
 db.once('open', function() {
     console.log('connected successfully');
+    User.create({
+      fullName: 'John Milou',
+      emailAddress: 'john@milou.com',
+      password: ''
+    })
+    .catch( err => console.log.bind(console, 'Couldn\'t add user') )//......................
 });
 
 // Express app
@@ -67,7 +73,6 @@ app.use((err, req, res, next) => {
       message: err.message
     });
   });
-
 
 // 
 app.disable('x-powered-by');

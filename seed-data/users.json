@@ -25,5 +25,14 @@
     "emailAddress": "sam@smith.com",
     "password": "password",
     "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "57029ed4795118be119cc439"
+    },
+    "fullName": "Sam Smith",
+    "emailAddress": "sam@smith.com",
+    "password": "password",
+    "__v": 0
   }
 ]

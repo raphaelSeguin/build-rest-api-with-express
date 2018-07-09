@@ -1,0 +1,9 @@
+{"_id":{"$oid":"57029ed4795118be119cc439"},"fullName":"Sam Smith","emailAddress":"sam@smith.com","password":"password","__v":0}
+{"_id":{"$oid":"57029ed4795118be119cc438"},"fullName":"Sam Jones","emailAddress":"sam@jones.com","password":"password","__v":0}
+{"_id":{"$oid":"57029ed4795118be119cc437"},"fullName":"Joe Smith","emailAddress":"joe@smith.com","password":"password","__v":0}
+{"_id":{"$oid":"5b3645bee85c4c5d800bfea5"},"fullName":"John Smith","emailAddress":"john@smith.com","password":"$2b$10$Nj1GCFsnQWifwGVgKYTiQeO2jSgq8zfCwT2o8S0JdRvhkqM2M8jgq","__v":0}
+{"_id":{"$oid":"5b3a31924767368bd5487d1f"},"fullName":"John glouglou","emailAddress":"john@saozeith.com","password":"$2b$10$3wUwDCpDedIO4sJCSvYlCuOAFMoG8.RZFu..M6ICyoKNpQBVI.gyK","__v":0}
+{"_id":{"$oid":"5b3a566b94118b95130ce13b"},"fullName":"John milou","emailAddress":"john@milou.com","password":"$2b$10$PZE1EqnaRVOZGHq38MKIJegWCI21pibRfvMK1qCDLXIg6Xn.gYKT.","__v":0}
+{"_id":{"$oid":"5b3b9fc03c1487bc36ba72a9"},"fullName":"John milou","emailAddress":"john@carrot.com","password":"$2b$10$Sy8zDmii98AFf0Swuxthlef.Oh17ixP/cxEPTL6BBZgdeJOXV4xDi","__v":0}
+{"_id":{"$oid":"5b3ce05b1a8cdcd7c5d4e7fb"},"fullName":"John milou","emailAddress":"john@carirot.com","password":"$2b$10$p2SBETBcC4TaH/9Y7eX2v.Cl1AddAmOaXhAjU5.tKXKVYDHj3.TwS","__v":0}
+{"_id":{"$oid":"5b3dd4584bcb94e79fa7fac7"},"fullName":"John milou","emailAddress":"biolo@carirot.com","password":"$2b$10$i7I0./DQbjBLv3qTl8HGBe3MrTZ.9WfHBvBSzU0a1cKOoNBSr.4eS","__v":0}

@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "519c3e6b-7696-4a4b-a3d2-4f704019dff3",
-		"name": "Course API",
+		"_postman_id": "8129c71e-6cd5-4f73-8941-28ec3d5fc555",
+		"name": "Course API copy",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -69,6 +69,64 @@
 				}
 			],
 			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Awesome Recipe\",\n    \"prepTime\": 0,\n    \"ingredients\": [\n        {\n            \"item\": \"Potatoes\"\n        },\n        {\n        }\n    ],\n    \"steps\": [\n    ]\n}"
+				},
+				"url": {
+					"raw": "localhost:5000/api/course/5b3e17bb8a58c8f5a1a2cf95",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"course",
+						"5b3e17bb8a58c8f5a1a2cf95"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Course (Wrong Creds)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d344992a-671a-4d06-a75b-47ba9e8c0e08",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test('getCourseWrongCreds', function() {",
+							"    pm.response.to.have.status(401);",
+							"})"
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "imwrong",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "margareth@thatcher.com",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [
 					{
@@ -559,7 +617,10 @@
 			"request": {
 				"method": "DELETE",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "localhost:5000/api/course/5b3b3d89994af6ac3842a97d",
 					"host": [

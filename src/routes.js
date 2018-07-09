@@ -14,6 +14,7 @@ const authentication = (req, res, next) => {
             req.user.pass,
             (err, user) => {
                 if (err) {
+                    err.status = 401;
                     return next(err);
                 }
                 req.user = user;
@@ -66,8 +67,11 @@ router.get('/courses', (req, res, next) => {
 });
 
 // GET /api/course/:courseId 200 - Returns all Course properties and related documents for the provided course ID
-router.get('/course/:courseId', (req, res, next) => {
-    Course.findById( req.params.courseId )
+router.get('/course/:courseId',
+    authentication,
+    (req, res, next) => {
+        Course
+        .findById( req.params.courseId )
         .populate('user', 'fullName')
         .populate('reviews')
         .exec( (err, course)  => {
@@ -77,7 +81,8 @@ router.get('/course/:courseId', (req, res, next) => {
                 res.status(200);
                 res.json(course);
             }
-        })
+        }
+    )
 });
 
 // POST /api/courses 201 - Creates a course, sets the Location header, and returns no content
